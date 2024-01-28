@@ -1,11 +1,10 @@
+import AppSeguro from "./components/AppSeguro"
 
 
 function App() {
 
   return (
-    <>
-      hola
-    </>
+    <AppSeguro />
   )
 }
 
