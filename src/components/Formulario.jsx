@@ -1,5 +1,5 @@
-import { Fragment } from "react"
-import { marcas, years, planes } from "../constants"
+import { Fragment } from "react";
+import { MARCAS, YEARS, PLANES } from "../constants";
 
 
 
@@ -16,7 +16,7 @@ const Formulario = () => {
                     >
                         <option value="">--Selecciona Marca--</option>
 
-                        {marcas.map(marca => (
+                        {MARCAS.map(marca => (
                             <option
                                 key={marca.id}
                                 value={marca.id}
@@ -35,7 +35,7 @@ const Formulario = () => {
                     >
                         <option value="">--Selecciona el año--</option>
 
-                        {years.map(year => (
+                        {YEARS.map(year => (
                             <option
                                 key={year}
                                 value={year}
@@ -51,7 +51,7 @@ const Formulario = () => {
                     <label className="block mb-3 font-bold text-gray-400 uppercase">Planes</label>
 
                     <div className="flex gap-3 items-center">
-                        {planes.map(plan => (
+                        {PLANES.map(plan => (
                             <Fragment key={plan.id}>
                                 <label>{plan.nombre}</label>
                                 <input type="radio" name="plan" value={plan.id} />
@@ -63,7 +63,7 @@ const Formulario = () => {
                 </div>
             </form >
         </>
-    )
-}
+    );
+};
 
-export default Formulario
+export default Formulario;
