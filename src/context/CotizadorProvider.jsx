@@ -6,8 +6,16 @@ export const CotizadorContext = createContext()
 
 export const CotizadorProvider = ({ children }) => {
 
+    const hola = "Hola react"
+
+
+
+
     return (
-        <CotizadorContext.Provider value={{}}>
+        <CotizadorContext.Provider value={{
+            hola,
+
+        }}>
             {children}
         </CotizadorContext.Provider>
     )
