@@ -12,22 +12,22 @@ const Formulario = () => {
         error,
         setError,
         cotizarSeguro
-    } = useCotizador()
+    } = useCotizador();
 
+    const { marca, year, plan } = datos;
 
     const handleSubmit = (e) => {
 
-        e.preventDefault()
-        const { marca, year, plan } = datos
+        e.preventDefault();
 
         if (marca === "" || year === "" || plan === "") {
-            setError("Todos los Campos Son Requerido")
-            return
+            setError("Todos los Campos Son Requerido");
+            return;
         }
-        setError('')
+        setError('');
 
-        cotizarSeguro()
-    }
+        cotizarSeguro();
+    };
 
     return (
         <>
@@ -40,7 +40,7 @@ const Formulario = () => {
                     <select name="marca"
                         className="w-full p-3 bg-white border border-gray-200"
                         onChange={e => handleChageDatos(e)}
-                        value={datos.marca}
+                        value={marca}
                     >
                         <option value="">--Selecciona Marca--</option>
 
@@ -60,7 +60,7 @@ const Formulario = () => {
 
                     <select name="year"
                         onChange={e => handleChageDatos(e)}
-                        value={datos.year}
+                        value={year}
                         className="w-full p-3 bg-white border border-gray-200"
                     >
                         <option value="">--Selecciona el año--</option>

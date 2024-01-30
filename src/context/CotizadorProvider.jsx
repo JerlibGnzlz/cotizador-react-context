@@ -1,7 +1,8 @@
 import { createContext, useState } from "react";
+import { obtenerDiferenciaYear } from "../helpers";
 
 
-export const CotizadorContext = createContext()
+export const CotizadorContext = createContext();
 
 
 export const CotizadorProvider = ({ children }) => {
@@ -11,22 +12,28 @@ export const CotizadorProvider = ({ children }) => {
         year: "",
         plan: ""
 
-    })
+    });
 
-    const [error, setError] = useState("")
+    const [error, setError] = useState("");
 
 
     const handleChageDatos = (e) => {
         setDatos({
             ...datos,
             [e.target.name]: e.target.value
-        })
-    }
+        });
+    };
 
     const cotizarSeguro = () => {
 
-        console.log("cotizando..")
-    }
+        let resultado = 2000;
+
+        const diferencia = obtenerDiferenciaYear(datos.year);
+
+        resultado -= ((diferencia * 3) * resultado) / 100;
+
+        console.log(resultado);
+    };
 
 
     // ─── Crearlo Asi Para Cambiar El Estado Es Una Manera Que Me Gusta con una funcion intermedia ───────────
@@ -37,9 +44,10 @@ export const CotizadorProvider = ({ children }) => {
             datos,
             error,
             setError,
-            cotizarSeguro
+            cotizarSeguro,
+            obtenerDiferenciaYear
         }}>
             {children}
         </CotizadorContext.Provider>
-    )
-} 
+    );
+}; 
