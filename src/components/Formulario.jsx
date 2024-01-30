@@ -6,7 +6,13 @@ import Error from "./Error";
 
 const Formulario = () => {
 
-    const { handleChageDatos, datos, error, setError } = useCotizador()
+    const {
+        handleChageDatos,
+        datos,
+        error,
+        setError,
+        cotizarSeguro
+    } = useCotizador()
 
 
     const handleSubmit = (e) => {
@@ -19,6 +25,8 @@ const Formulario = () => {
             return
         }
         setError('')
+
+        cotizarSeguro()
     }
 
     return (

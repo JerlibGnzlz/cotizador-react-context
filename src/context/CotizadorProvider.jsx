@@ -23,6 +23,10 @@ export const CotizadorProvider = ({ children }) => {
         })
     }
 
+    const cotizarSeguro = () => {
+
+        console.log("cotizando..")
+    }
 
 
     // ─── Crearlo Asi Para Cambiar El Estado Es Una Manera Que Me Gusta con una funcion intermedia ───────────
@@ -32,7 +36,8 @@ export const CotizadorProvider = ({ children }) => {
             handleChageDatos,
             datos,
             error,
-            setError
+            setError,
+            cotizarSeguro
         }}>
             {children}
         </CotizadorContext.Provider>
