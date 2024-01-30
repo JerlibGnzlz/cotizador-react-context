@@ -6,23 +6,33 @@ export const CotizadorContext = createContext()
 
 export const CotizadorProvider = ({ children }) => {
 
+    const [datos, setDatos] = useState({
+        marca: "",
+        year: "",
+        plan: ""
+
+    })
+
+    const [error, setError] = useState("")
 
 
-    const [modal, setModal] = useState(false)
+    const handleChageDatos = (e) => {
+        setDatos({
+            ...datos,
+            [e.target.name]: e.target.value
+        })
+    }
+
 
 
     // ─── Crearlo Asi Para Cambiar El Estado Es Una Manera Que Me Gusta con una funcion intermedia ───────────
 
-
-    const cambiarModal = () => {
-        setModal(!modal)
-    }
-
-    // ─── Crearlo Asi Para Cambiar El Estado Es Una Manera Que Me Gusta ───────────
     return (
         <CotizadorContext.Provider value={{
-            modal,
-            cambiarModal
+            handleChageDatos,
+            datos,
+            error,
+            setError
         }}>
             {children}
         </CotizadorContext.Provider>

@@ -1,20 +1,38 @@
 import { Fragment } from "react";
 import { MARCAS, YEARS, PLANES } from "../constants";
+import { useCotizador } from "../hooks/useCotizador";
+import Error from "./Error";
 
 
 const Formulario = () => {
 
+    const { handleChageDatos, datos, error, setError } = useCotizador()
+
+
+    const handleSubmit = (e) => {
+
+        e.preventDefault()
+        const { marca, year, plan } = datos
+
+        if (marca === "" || year === "" || plan === "") {
+            setError("Todos los Campos Son Requerido")
+            return
+        }
+        setError('')
+    }
 
     return (
         <>
+            {error && <Error />}
 
-
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="my-5">
                     <label className="block mb-3 font-bold text-gray-400 uppercase">Marca</label>
 
                     <select name="marca"
                         className="w-full p-3 bg-white border border-gray-200"
+                        onChange={e => handleChageDatos(e)}
+                        value={datos.marca}
                     >
                         <option value="">--Selecciona Marca--</option>
 
@@ -32,7 +50,9 @@ const Formulario = () => {
                 <div className="my-5">
                     <label className="block mb-3 font-bold text-gray-400 uppercase">Año</label>
 
-                    <select name="marca"
+                    <select name="year"
+                        onChange={e => handleChageDatos(e)}
+                        value={datos.year}
                         className="w-full p-3 bg-white border border-gray-200"
                     >
                         <option value="">--Selecciona el año--</option>
@@ -56,12 +76,20 @@ const Formulario = () => {
                         {PLANES.map(plan => (
                             <Fragment key={plan.id}>
                                 <label>{plan.nombre}</label>
-                                <input type="radio" name="plan" value={plan.id} />
+                                <input type="radio"
+                                    name="plan"
+                                    value={plan.id}
+                                    onChange={e => handleChageDatos(e)}
+                                />
                             </Fragment>
                         ))}
                     </div>
-                    <input className="bg-green-300 hover:bg-green-500 w-full transition-colors text-white cursor-pointer p-3 uppercase font-bold mt-3"
-                        type="submit" name="enviar" value="Cotizar" />
+                    <input
+                        type="submit"
+                        name="cotizar"
+                        value="cotizar"
+
+                        className="bg-green-300 hover:bg-green-500 w-full transition-colors text-white cursor-pointer p-3 uppercase font-bold mt-3" />
                 </div>
             </form >
         </>
