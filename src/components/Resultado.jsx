@@ -1,4 +1,5 @@
-import { useCallback, useRef } from "react"
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useCallback, useMemo, useRef } from "react"
 import { useCotizador } from "../hooks/useCotizador"
 import { MARCAS, PLANES, YEARS } from "../constants/index"
 
@@ -9,9 +10,20 @@ function Resultado() {
 
     const { marca, plan, year } = datos
 
-    const [nombreMarcas] = useCallback(MARCAS.filter(m => m.id === (+marca)), [resultado])
+    // ─── Usememo Usa Llama A Una Funcion ─────────────────────────────────
+
+
+    const [nombreMarcas] = useMemo(() =>
+        MARCAS.filter(m => m.id === (+marca)),
+        [resultado])
+
+    // ─── Usecallback Muy Parecido A Un Useeffect ─────────────────
+
 
     const [planesMarcas] = useCallback(PLANES.filter(m => m.id === (+plan)), [resultado])
+
+    // ─── Useref Facil De Utilizar ────────────────────────────────────────
+
 
     const yearRef = useRef(year);
 
