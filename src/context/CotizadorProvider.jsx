@@ -52,7 +52,9 @@ export const CotizadorProvider = ({ children }) => {
         setTimeout(() => {
             setResultado(resultado)
             setCargando(false)
+
         }, 1000);
+        setResultado("")
 
     };
 
