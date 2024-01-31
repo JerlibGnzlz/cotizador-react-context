@@ -21,6 +21,7 @@ export const CotizadorProvider = ({ children }) => {
 
     const [error, setError] = useState("");
     const [resultado, setResultado] = useState(0)
+    const [cargando, setCargando] = useState(false)
 
 
     const handleChageDatos = (e) => {
@@ -46,8 +47,13 @@ export const CotizadorProvider = ({ children }) => {
 
         resultado = formatearDinero(resultado)
 
+        setCargando(true)
 
-        setResultado(resultado)
+        setTimeout(() => {
+            setResultado(resultado)
+            setCargando(false)
+        }, 1000);
+
     };
 
 
@@ -60,7 +66,9 @@ export const CotizadorProvider = ({ children }) => {
             error,
             setError,
             cotizarSeguro,
-            obtenerDiferenciaYear
+            obtenerDiferenciaYear,
+            resultado,
+            cargando
         }}>
             {children}
         </CotizadorContext.Provider>
